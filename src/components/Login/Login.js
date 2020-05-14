@@ -1,17 +1,43 @@
 import React, { Component } from 'react';
 import './Login.css';
+import {Link} from 'react-router-dom';
 
 class Login extends Component {
-  constructor() {
-    super();
-    this.state = {
-      username: '',
-      email: '',
-      usePurpose: '',
-    }
+  constructor (props) {
+    super(props);
+      this.state = {
+        username: '',
+        email: '',
+        usePurpose: '',
+        formReady: false
+    };
   }
 
-  render() {
+  setUserInfo = (event) => {
+    event.preventDefault();
+    let targetedProperty = event.target.id;
+// Remember the second param to setState() is the callback when it is finished setting state
+    this.setState({ [targetedProperty]: event.target.value }, () => {
+    this.validateUserInfo(event);
+    });
+  };
+
+  validateUserInfo = (event) => {
+    console.log('hello from validateUserInfo')
+    if (
+        !this.state.username ||
+        !this.state.email ||
+        !this.state.usePurpose
+      ) {
+        console.log("hello from inside the conditional")
+        // alert("All fields must be completed!")
+        return;
+        }
+        console.log("beans from formReady True")
+        this.setState({ formReady: true });
+  }
+
+  render () {
     return (
       <div className='login-form-container'>
         <form className='login-form'>
@@ -23,29 +49,13 @@ class Login extends Component {
             <option value="vacation">Vacation</option>
             <option value="other">Other…</option>
           </select>
-          <button onClick={this.validateUserInfo}>Submit</button>
+          <Link to="/Areas" >
+          <button type='submit' disabled={!this.state.formReady}>Submit
+          </button>
+          </Link>
         </form>
       </div>
     )
-  }
-
-  setUserInfo = (event) => {
-    event.preventDefault();
-    let targetedProperty = event.target.id;
-    // if event.target.value is '' throw error otherwise this.setState
-
-    this.setState({[targetedProperty] : event.target.value});
-    console.log('state', this.state);
-  };
-
-  validateUserInfo = (event) => {
-    event.preventDefault();
-    return (
-      this.state.username === '' ? alert('Username is invalid!') : null,
-      this.state.email === '' ? alert('Email is invalid!') : null,
-      this.state.usePurpose === ''? alert('You must choose a purpose for your visit!') : null
-    )
-
   }
 }
 
