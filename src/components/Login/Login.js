@@ -16,25 +16,29 @@ class Login extends Component {
   setUserInfo = (event) => {
     event.preventDefault();
     let targetedProperty = event.target.id;
-// Remember the second param to setState() is the callback when it is finished setting state
+  
     this.setState({ [targetedProperty]: event.target.value }, () => {
     this.validateUserInfo(event);
     });
+  
   };
 
+
   validateUserInfo = (event) => {
-    console.log('hello from validateUserInfo')
     if (
         !this.state.username ||
         !this.state.email ||
         !this.state.usePurpose
       ) {
-        console.log("hello from inside the conditional")
         // alert("All fields must be completed!")
         return;
         }
-        console.log("beans from formReady True")
         this.setState({ formReady: true });
+        this.props.setUserInfoOnParent({
+          user: this.state.username,
+          email: this.state.email,
+          usePurpose: this.state.usePurpose
+        })
   }
 
   render () {
