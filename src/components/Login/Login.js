@@ -54,7 +54,7 @@ class Login extends Component {
             <option value="other">Other…</option>
           </select>
           <Link to="/Areas" >
-          <button type='submit' disabled={!this.state.formReady}>Submit
+          <button type='submit' onClick={this.props.changeLoginStatus} disabled={!this.state.formReady}>Submit
           </button>
           </Link>
         </form>

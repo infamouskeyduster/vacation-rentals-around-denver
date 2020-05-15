@@ -12,7 +12,8 @@ class App extends Component {
     super();
     this.state = {
       user: {},
-      areas: []
+      areas: [],
+      isLoggedIn: false
     };
   }
   
@@ -46,13 +47,23 @@ class App extends Component {
      this.fetchAreas()
   }
 
+  changeLoginStatus = () => {
+    console.log(this.state)
+    this.setState({isLoggedIn: (!this.state.isLoggedIn)})
+  }
+
   render() {
     return (
       <main className="App">
-      <Nav name={this.state.user.user}/>
+      <Nav 
+        isLoggedIn={this.state.isLoggedIn} 
+        user={this.state.user}
+        changeLoginStatus={this.changeLoginStatus}
+      />
         <Switch>
           <Route exact path="/" render={() => 
           <Login
+            changeLoginStatus={this.changeLoginStatus}
             setUserInfoOnParent={this.setUserInfoOnParent}
           />} />
           <Route path="/areas" render={() => <AreasContainer areaData={this.state.areas} name={this.state.user.user}/>} />
