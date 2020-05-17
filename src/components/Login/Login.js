@@ -16,11 +16,11 @@ class Login extends Component {
   setUserInfo = (event) => {
     event.preventDefault();
     let targetedProperty = event.target.id;
-  
+
     this.setState({ [targetedProperty]: event.target.value }, () => {
     this.validateUserInfo(event);
     });
-  
+
   };
 
 
@@ -28,7 +28,8 @@ class Login extends Component {
     if (
         !this.state.username ||
         !this.state.email ||
-        !this.state.usePurpose
+        !this.state.usePurpose ||
+        !this.state.email.includes('@')
       ) {
         // alert("All fields must be completed!")
         return;
@@ -47,8 +48,8 @@ class Login extends Component {
         <form className='login-form'>
           <input onChange={this.setUserInfo} id='username' placeholder='username'></input>
           <input onChange={this.setUserInfo} id='email' placeholder='email'></input>
-          <select value={this.state.usePurpose} onChange={this.setUserInfo} id="usePurpose" placeholder='purpose for travel'>
-             <option value="" disabled selected>Choose the purpose for your visit</option>
+          <select defaultValue={this.state.usePurpose} onChange={this.setUserInfo} id="usePurpose" placeholder='purpose for travel'>
+            <option value="" disabled>Choose the purpose for your visit</option>
             <option value="business">Business</option>
             <option value="vacation">Vacation</option>
             <option value="other">Other…</option>

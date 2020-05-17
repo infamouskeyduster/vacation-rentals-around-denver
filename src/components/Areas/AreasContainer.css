@@ -1,4 +1,5 @@
 .areas-container {
+  border: 1px solid red;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -7,5 +8,5 @@
   height: 100%;
   margin-left: 175px;
   margin-right: 175px;
-  padding: 0;
+  padding-top: 35px;
 }

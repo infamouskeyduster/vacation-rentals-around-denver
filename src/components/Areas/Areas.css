@@ -1,5 +1,5 @@
 .area-card {
-  width: 33%;
+  width: 45%;
   margin: 10px;
   padding: 5px;
   background-color: #9c7a97;
@@ -18,8 +18,9 @@ button {
 
 hr {
   width: 75%;
-  border: 3px solid;
-  border-color: #888da7;
+  border: 1px solid;
+  border-color: #8be8cb;
+  background-color: #8be8cb;
 
 }
 
