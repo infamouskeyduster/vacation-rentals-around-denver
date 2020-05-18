@@ -3,6 +3,7 @@ import './App.css';
 import Login from '../Login/Login';
 import Nav from '../Nav.js';
 import AreasContainer from '../Areas/AreasContainer.js';
+import ListingsContainer from '../Listings/Listings-container.js';
 import VRADLogo from '../../assets/vrad_logo_v1.svg';
 import VRADLogoType from '../../assets/VRAD_logo_type.svg';
 import {
@@ -68,16 +69,35 @@ class App extends Component {
           />
         </div>
         <Switch>
+
           <Route exact path="/" render={() =>
           <Login
             changeLoginStatus={this.changeLoginStatus}
             setUserInfoOnParent={this.setUserInfoOnParent}
           />} />
           {!this.state.isLoggedIn && <Redirect to="/" />}
-          <Route path="/areas" render={() =>
-            <AreasContainer areaData={this.state.areas}
-            name={this.state.user.user}
-            />}/>
+
+          <Route
+              path="/areas/:area_id/listings"
+              render={({ match }) => {
+                // How can you get the :id from the url?
+                console.log('match obj', match.params.area_id);
+                //now that we have the id, we can search our posts in state using
+                //this console logged id above
+                const foundAreaListing = this.state.areas.find(area => (area.details.id === parseInt(match.params.area_id)));
+                // const postToRender = this.state.posts.find(
+                //   post => post.id === parseInt(match.params.id)
+                // );
+                return (
+                  <ListingsContainer areaListings={foundAreaListing.details.listings}/>
+                );
+              }}/>
+
+              <Route exactpath="/areas" render={() =>
+                <AreasContainer areaData={this.state.areas}
+                name={this.state.user.user}
+                />}/>
+
         </Switch>
       </main>
     );

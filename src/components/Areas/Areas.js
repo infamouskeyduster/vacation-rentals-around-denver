@@ -1,16 +1,20 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 import './Areas.css';
 
-
-
 const Areas = (props) => {
+  console.log('props on each area card', props)
+  console.log('id for each area', props.id);
+  let areaID = props.id;
     return (
      <article className='area-card'>
             <h1>{props.shortName}</h1>
             <hr />
             <h2>{props.longName}</h2>
             <p>{props.description}</p>
-            <button>View Listings</button>
+            <Link to={`/areas/${areaID}/listings`}>
+              <button>View Listings</button>
+            </Link>
         </article>
     )}
 
