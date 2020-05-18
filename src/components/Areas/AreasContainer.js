@@ -1,6 +1,5 @@
 import React from 'react';
 import Areas from './Areas';
-import Nav from '../Nav.js';
 import './AreasContainer.css';
 
 const AreasContainer = (props) => {

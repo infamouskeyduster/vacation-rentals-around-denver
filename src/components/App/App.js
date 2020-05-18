@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import Login from '../Login/Login';
-import Nav from '../Nav.js';
+import Nav from '../Nav/Nav.js';
 import AreasContainer from '../Areas/AreasContainer.js';
 import ListingsContainer from '../Listings/Listings-container.js';
 import VRADLogo from '../../assets/vrad_logo_v1.svg';
