@@ -1,0 +1,43 @@
+.listings-container {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  /* width: 75%; */
+  height: 100%;
+  margin-left: 175px;
+  margin-right: 175px;
+  padding: 35px 0 35px 0;
+}
+
+.listings-card {
+  width: 45%;
+  margin: 10px;
+  padding: 5px;
+  background-color: #9c7a97;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  text-align: center;
+}
+
+.listings-card h1 {
+  width: 80%;
+  align-self: center;
+}
+
+button {
+  width: 200px;
+  height: 20px;
+  /* display: flex; */
+  align-self: center;
+}
+
+.listings-card-img {
+  border: 5px solid #6A979D;
+  margin-top: 4%;
+  width: 90%;
+  align-self: center;
+  border-image-outset: -7px;
+}

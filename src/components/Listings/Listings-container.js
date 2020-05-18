@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Listings from './Listings';
+import './Listings-container.css';
 
 class ListingsContainer extends Component {
   constructor(props) {
@@ -7,8 +8,6 @@ class ListingsContainer extends Component {
     this.state = {
       listingsInfo: [],
     }
-    // console.log('props in ListingsContainer', this.props);
-    // this.listingInfo();
   }
 
   iterateOverListingInfo =  () => {
@@ -17,35 +16,44 @@ class ListingsContainer extends Component {
       return result;
     })
 
-    //console.log('listingData', listingData);
     return listingData;
   }
 
   fetchAllListingsData = async (listing) => {
-      // console.log('fetch URL', `'https://vrad-api.herokuapp.com${listing}'`);
-      let allResponses = [];
-      const response = await fetch(`https://vrad-api.herokuapp.com${listing}`)
-      const data = await response.json();
+    const response = await fetch(`https://vrad-api.herokuapp.com${listing}`)
+    const data = await response.json();
 
-      return data;
+    return data;
   }
 
   componentDidMount() {
-   let allPromises = this.iterateOverListingInfo();
-   Promise.all(allPromises).then(allPromises => {this.setState({listingsInfo: allPromises})})
+    let allPromises = this.iterateOverListingInfo();
+    Promise.all(allPromises).then(allPromises => {this.setState({listingsInfo: allPromises})})
   }
 
   render() {
     if (this.state.listingsInfo.length === 0) {
       return null;
+    } else {
+
+      const listings = this.state.listingsInfo.map(listing => {
+        return(
+          <Listings
+            key={listing.listing_id}
+            id={listing.listing_id}
+            name={listing.name}
+          />
+        );
+      })
+
+      console.log('state', this.state);
+        return(
+            <section className="listings-container">
+              {listings}
+            </section>
+        );
+
     }
-    console.log('state', this.state)
-    return(
-      <section>
-      <h1>{this.state.test}</h1>
-      <Listings  listings={this.state.listingsInfo}/>
-      </section>
-    );
   }
 }
 
