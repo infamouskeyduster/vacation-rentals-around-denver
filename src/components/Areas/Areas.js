@@ -3,8 +3,6 @@ import {Link} from 'react-router-dom';
 import './Areas.css';
 
 const Areas = (props) => {
-  console.log('props on each area card', props)
-  console.log('id for each area', props.id);
   let areaID = props.id;
     return (
      <article className='area-card'>

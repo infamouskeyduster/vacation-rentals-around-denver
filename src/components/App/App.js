@@ -4,12 +4,11 @@ import Login from '../Login/Login';
 import Nav from '../Nav/Nav.js';
 import AreasContainer from '../Areas/AreasContainer.js';
 import ListingsContainer from '../Listings/Listings-container.js';
-import VRADLogo from '../../assets/vrad_logo_v1.svg';
-import VRADLogoType from '../../assets/VRAD_logo_type.svg';
+import VRADLogo from '../../assets/vrad_logo_v1_outline.svg';
+import VRADLogoType from '../../assets/VRAD_logo_type_outline.svg';
 import {
   BrowserRouter, Route, Switch, Redirect
 } from "react-router-dom";
-
 
 class App extends Component {
   constructor() {
@@ -17,8 +16,14 @@ class App extends Component {
     this.state = {
       user: {},
       areas: [],
-      isLoggedIn: false
+      isLoggedIn: false,
+      favorites: {}
     };
+  }
+  
+  setFavoriteOnParent = (favoritesFromListingsContainer) => {
+    console.log('setFavoriteOnParent in app', favoritesFromListingsContainer)
+    this.setState({favorites: favoritesFromListingsContainer})
   }
 
   setUserInfoOnParent = (user) => {
@@ -52,7 +57,7 @@ class App extends Component {
   }
 
   changeLoginStatus = () => {
-    console.log(this.state)
+
     this.setState({isLoggedIn: (!this.state.isLoggedIn)})
   }
 
@@ -77,11 +82,26 @@ class App extends Component {
           />} />
           {!this.state.isLoggedIn && <Redirect to="/" />}
 
+          {/* <Route 
+              path="/areas/:area_id/listings/:listing_id"
+              render={({match}) => {
+              return(
+              <ListingsContainer />
+              )
+              }} /> */}
+
+              <Route 
+                exact path="/favorties"
+                render={() => {
+                  return (
+                  <ListingsContainer setFavoriteOnParent={this.setFavoriteOnParent} favorites={this.state.favorites} />
+                  )
+                }}
+              />
           <Route
               path="/areas/:area_id/listings"
               render={({ match }) => {
                 // How can you get the :id from the url?
-                console.log('match obj', match.params.area_id);
                 //now that we have the id, we can search our posts in state using
                 //this console logged id above
                 const foundAreaListing = this.state.areas.find(area => (area.details.id === parseInt(match.params.area_id)));
@@ -89,7 +109,7 @@ class App extends Component {
                 //   post => post.id === parseInt(match.params.id)
                 // );
                 return (
-                  <ListingsContainer areaListings={foundAreaListing.details.listings}/>
+                  <ListingsContainer setFavoriteOnParent={this.setFavoriteOnParent} areaListings={foundAreaListing.details.listings}/>
                 );
               }}/>
 

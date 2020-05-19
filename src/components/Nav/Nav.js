@@ -10,6 +10,9 @@ const Nav = (props) => {
       <Link to="/">
         <button onClick={props.changeLoginStatus}>Sign Out</button>
       </Link>
+      <Link to="/favorites">
+        <button>View My Favorites!</button>
+      </Link>
     </nav>
     )
   } else {

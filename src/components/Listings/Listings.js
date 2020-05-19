@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
-// import Image1 from '../../../public/Images/3_a.jpg';
-// import VRADLogo from '../../assets/vrad_logo_v1.svg';
+import {Link} from 'react-router-dom';
+import ListingDetails from './ListingDetails';
 
 // import './Listings.css';
 
-const Listings = (props) => {
-  console.log('props in listing card', props);
-  console.log('process.env.PUBLIC_URL', process.env.PUBLIC_URL);
+
+const Listings = (props, event) => {
   return (
     <div className='listings-card'>
       <img
@@ -15,9 +14,18 @@ const Listings = (props) => {
       alt={props.name}
       />
       <h1>{props.name}</h1>
-      <button>Show me the DEETS</button>
+      <Link to={`/areas/${props.areaId}/listings/${props.id}`}>
+        <button onClick={() => {props.findSingleListingById(props.id)}}>Show me the DEETS</button>
+      </Link>
     </div>
   );
 }
+
+//  "listing_id": 8,\
+// /areas/${area's id }/listings/${listing id}
+
+{/* <Link to={`/areas/${areaID}/listings`}>
+              <button>View Listings</button>
+            </Link> */}
 
 export default Listings;

@@ -16,7 +16,7 @@ button {
   align-self: center;
 }
 
-hr {
+.area-card hr {
   width: 75%;
   border: 1px solid;
   border-color: #8be8cb;
