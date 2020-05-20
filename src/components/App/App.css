@@ -20,12 +20,13 @@
   padding: 10px 10px;
 }
 
-.logo-tyoe {
-  height: 90%;
-}
-
 nav {
-  margin-left: 200px;
+  display: flex;
+  flex-direction: row;
+  border-left: 4px solid #7ea2aa;
+  padding-left: 7%;
+  margin-left: 100px;
+  padding-top: 15px;
 }
 
 nav h1 {
@@ -35,4 +36,11 @@ nav h1 {
 nav p {
 margin: 0;
 padding: 0;
+width: 55%;
+}
+
+nav button {
+  margin: 6% 5% 0% 0%;
+  height: 2rem;
+  font-size: .7rem;
 }

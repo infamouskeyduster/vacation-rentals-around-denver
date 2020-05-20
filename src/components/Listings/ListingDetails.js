@@ -21,7 +21,8 @@ const Listing = ({listing, addListingToFavorite, removeListingFromFavorites, isF
           <li>Features: </li>
             {listingFeatures}
         </ul>
-        <button onClick={() => {addListingToFavorite(listing.listing_id, !isFavorite)}}>{isFavorite ? 'Unfavorite' : 'Favorite'}</button>
+        <button onClick={() => {addListingToFavorite(listing.listing_id, !isFavorite)}}>
+        {isFavorite ? 'Unfavorite' : 'Favorite'}</button>
       </div>
       <div className="images-container">
         <img className="listing-detail-images" src={`${process.env.PUBLIC_URL}/Images/${listing.listing_id}_a.jpg`} />

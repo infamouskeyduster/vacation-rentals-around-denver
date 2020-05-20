@@ -4,11 +4,13 @@ import Login from '../Login/Login';
 import Nav from '../Nav/Nav.js';
 import AreasContainer from '../Areas/AreasContainer.js';
 import ListingsContainer from '../Listings/Listings-container.js';
+import FavoritesContainer from './Favorites/FavoritesContainer';
 import VRADLogo from '../../assets/vrad_logo_v1_outline.svg';
 import VRADLogoType from '../../assets/VRAD_logo_type_outline.svg';
 import {
-  BrowserRouter, Route, Switch, Redirect
+  BrowserRouter, Route, Switch, Redirect, Link
 } from "react-router-dom";
+
 
 class App extends Component {
   constructor() {
@@ -22,8 +24,13 @@ class App extends Component {
   }
   
   setFavoriteOnParent = (favoritesFromListingsContainer) => {
-    console.log('setFavoriteOnParent in app', favoritesFromListingsContainer)
-    this.setState({favorites: favoritesFromListingsContainer})
+    this.setState({favorites: {...this.state.favorites, ...favoritesFromListingsContainer}}, () => console.log(this.state.favorites))
+  }
+
+  removeFavoriteOnParent = (id) => {
+    let favorites = this.state.favorites;
+    delete favorites[id]
+    console.log(this.state.favorites)
   }
 
   setUserInfoOnParent = (user) => {
@@ -61,16 +68,27 @@ class App extends Component {
     this.setState({isLoggedIn: (!this.state.isLoggedIn)})
   }
 
+  countFavorites = () => {
+    const favoriteKeys = Object.keys(this.state.favorites)
+    return favoriteKeys.length
+  }
+
   render() {
+    
     return (
       <main className="App">
         <div className="logo-container">
-          <img className="logo" src={VRADLogo} alt="VRAD-logo" />
-          <img className="logo-type" src={VRADLogoType} alt="VRAD-logo-type" />
+            <img 
+            className="logo" 
+            src={VRADLogo} 
+            alt="VRAD-logo"
+            />
+            <img className="logo-type" src={VRADLogoType} alt="VRAD-logo-type" />
           <Nav
             isLoggedIn={this.state.isLoggedIn}
             user={this.state.user}
             changeLoginStatus={this.changeLoginStatus}
+            numberOfFavorites={this.countFavorites}
           />
         </div>
         <Switch>
@@ -91,10 +109,13 @@ class App extends Component {
               }} /> */}
 
               <Route 
-                exact path="/favorties"
+                path="/favorites"
+
                 render={() => {
                   return (
-                  <ListingsContainer setFavoriteOnParent={this.setFavoriteOnParent} favorites={this.state.favorites} />
+                  <FavoritesContainer  favorites={this.state.favorites} 
+                  removeFavoriteOnParent={this.removeFavoriteOnParent}
+                  />
                   )
                 }}
               />
@@ -109,7 +130,9 @@ class App extends Component {
                 //   post => post.id === parseInt(match.params.id)
                 // );
                 return (
-                  <ListingsContainer setFavoriteOnParent={this.setFavoriteOnParent} areaListings={foundAreaListing.details.listings}/>
+                  <ListingsContainer 
+                  removeFavoriteOnParent={this.removeFavoriteOnParent}
+                  setFavoriteOnParent={this.setFavoriteOnParent} areaListings={foundAreaListing.details.listings}/>
                 );
               }}/>
 

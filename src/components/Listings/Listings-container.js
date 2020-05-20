@@ -49,12 +49,16 @@ class ListingsContainer extends Component {
 
   }
 
+  toggleFavorite(isFavorite){
+    
+  }
+
   removeListingFromFavorites = (id) => {
     const foundListingById = this.findSingleListingById(id);
     let favorites = this.state.favorites;
     delete favorites[id];
     this.setState({favorites});
-    this.props.setFavoriteOnParent(this.state.favorites)
+    this.props.removeFavoriteOnParent(id)
   }
 
   componentDidMount() {
