@@ -1,68 +1,34 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# VRAD – Vacation Rentals Around Denver
 
-## Available Scripts
+## App Screenshot
+![Vacation Rentals Around Denver - screenshot 1](https://user-images.githubusercontent.com/49289426/82496689-5df9ef00-9aaa-11ea-8cf7-f9295d8553a5.png)
+![Vacation Rentals Around Denver - screenshot 2](https://user-images.githubusercontent.com/49289426/82496963-c1841c80-9aaa-11ea-9ce0-0dd105d370a8.png)
+![Vacation Rentals Around Denver - screenshot 3](https://user-images.githubusercontent.com/49289426/82497001-d2349280-9aaa-11ea-8113-4e3af55cdea5.png)
+![Vacation Rentals Around Denver - screenshot 4](https://user-images.githubusercontent.com/49289426/82497045-e4163580-9aaa-11ea-9967-ed30c31e17e7.png)
+![Vacation Rentals Around Denver - screenshot 5](https://user-images.githubusercontent.com/49289426/82497117-fd1ee680-9aaa-11ea-9f5f-335611bae5bc.png)
+![Vacation Rentals Around Denver - screenshot 6](https://user-images.githubusercontent.com/49289426/82497171-0d36c600-9aab-11ea-9f31-285f7841558e.png)
 
-In the project directory, you can run:
+## Team Members:
 
-### `npm start`
+[Kimala Cochran](https://github.com/kimalajoy)
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+[John Watterson](https://github.com/infamouskeyduster)
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+## Abstract
+This is a paired programming project during our time at Turing School of Software and Design — Module 3 Front End Engineering. This app allows a user to login and view various rental locations around Denver. Upon choosing an Area, the user is shown an overview of all available listings for that given area. Then the user chooses a specific listing to view all of the pertinent details and images for that listing. The user is then able to 'favorite' a listing if they like. This listing is then shown in the button context of the 'View My Favorites' button as a running count of favorited listings. Then the user clicks the 'View My Favorites' button to view a collection of all of their favorites. Favorites can be removed at any time from the relative path of the listing, or from the favorites view.
 
-### `npm test`
+## Technology Used
+- create-react-app
+- REACT router
+- Fetch API
+- Async / Await
+- Testing
+  - React Testing Library
+  - Jest Testing Library
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+## Setup
+1. clone down this repo to desired location
+2. `cd` into the new directory
+3. run `npm install`
+4. run `npm start`
+5. open browser and enter `http://localhost:3000/` (this step may happen automatically upon `npm start`)
