@@ -9,7 +9,7 @@ class FavoritesContainer extends Component {
       favoritesData: []
     }
   }
-  
+
   componentDidMount = async () => {
     const fetchedFavoritesData = await retrieveFavoritesData(this.props.favorites)
 
@@ -25,7 +25,7 @@ class FavoritesContainer extends Component {
 
 
     const removeFavorite = this.state.favoritesData.filter(favorite => favorite.listing_id !== id)
-     
+
     this.setState({favoritesData: removeFavorite})
 
       return;
@@ -37,13 +37,13 @@ class FavoritesContainer extends Component {
   render() {
     if(!this.state.favoritesData.length) {
       return (
-        <h3 className="no-favorites-message">You don't have any favorites yet, <br/> you should probably add some…</h3>
+        <h3 className="no-favorites-message">You don't have any favorites yet! <br/> you should probably add some…</h3>
       )
     }
 
     const allFavorites = this.state.favoritesData.map(favorite => {
       return(
-          <ListingDetails 
+          <ListingDetails
           key={favorite.listing_id}
           listing={favorite}
           isFavorite={true}
@@ -53,7 +53,7 @@ class FavoritesContainer extends Component {
           />
       )
     })
-  
+
     return (
       <div>
         {allFavorites}
@@ -61,7 +61,7 @@ class FavoritesContainer extends Component {
     )
 
   }
-  
+
 }
 
 

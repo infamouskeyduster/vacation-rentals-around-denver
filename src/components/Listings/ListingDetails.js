@@ -2,7 +2,7 @@ import React from 'react';
 
 const Listing = ({listing, toggleFavorite, isFavorite}) => {
   const listingFeatures = listing.details.features.map((feature, i) => {
-    return <p key={i}>{feature}</p>
+    return <p key={i}>{`❤︎  ${feature}`}</p>
   })
 
   return(
@@ -13,9 +13,12 @@ const Listing = ({listing, toggleFavorite, isFavorite}) => {
         <ul>
           <li>Address:</li>
             <p>{listing.address.street}, {listing.address.zip}</p>
-          <li>Number of Bedrooms: {listing.details.beds}</li>
-          <li>Number of Bathrooms: {listing.details.baths}</li>
-          <li>Cost Per Night: ${listing.details.cost_per_night}</li>
+          <li>Bedrooms:</li>
+            <p>{listing.details.beds}</p>
+          <li>Bathrooms:</li>
+            <p>{listing.details.baths}</p>
+          <li>Cost Per Night:</li>
+            <p>${listing.details.cost_per_night}</p>
           <li>Features: </li>
             {listingFeatures}
         </ul>

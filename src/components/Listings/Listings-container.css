@@ -9,7 +9,6 @@
   margin-left: 175px;
   margin-right: 175px;
   padding: 35px 0 35px 0;
-  border: 1px solid red;
 }
 
 .listings-card {
@@ -58,13 +57,14 @@ button {
 }
 
 .listing-detail-card p {
-  line-height: .25rem;
+  line-height: 1.2rem;
+  margin-top: 0;
 }
 
 .listing-detail-card li {
   text-transform: uppercase;
   font-weight: 500;
-  font-size: 1.3rem;
+  font-size: 1.2rem;
   line-height: 1.9rem;
 }
 
@@ -73,9 +73,7 @@ button {
   width: 55%;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  height: 50%;
-  outline: 1px red;
+  /* justify-content: center; */
 }
 
 .listing-detail-card hr {

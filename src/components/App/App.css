@@ -25,23 +25,26 @@ nav {
   flex-direction: row;
   border-left: 4px solid #7ea2aa;
   padding-left: 7%;
-  margin-left: 100px;
+  margin-left: 90px;
   padding-top: 15px;
 }
 
 nav h1 {
   color: #303633;
+  width: 70%;
+  margin-bottom: 5px;
 }
 
 nav p {
 margin: 0;
 padding: 0;
-width: 55%;
+width: 90%;
 }
 
 nav button {
-  margin: 6% 5% 0% 0%;
+  margin: 11% 5% 0% 0%;
   height: 2rem;
+  width: 9rem;
   font-size: .7rem;
 }
 
@@ -50,5 +53,6 @@ nav button {
   font-weight: 500;
   text-transform: uppercase;
   color: white;
-  margin-top: 7%;
+  margin-top: 4%;
+  line-height: 1.75rem;
 }
