@@ -48,7 +48,7 @@ class Login extends Component {
         <form className='login-form'>
           <input onChange={this.setUserInfo} id='username' placeholder='username'></input>
           <input onChange={this.setUserInfo} id='email' placeholder='email'></input>
-          <select defaultValue={this.state.usePurpose} onChange={this.setUserInfo} id="usePurpose" placeholder='purpose for travel'>
+          <select defaultValue={this.state.usePurpose} onChange={this.setUserInfo} data-testid="usePurpose" id="usePurpose">
             <option value="" disabled>Choose the purpose for your visit</option>
             <option value="business">Business</option>
             <option value="vacation">Vacation</option>
