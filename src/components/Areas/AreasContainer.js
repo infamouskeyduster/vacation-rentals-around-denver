@@ -23,8 +23,4 @@ const AreasContainer = (props) => {
   )
 }
 
-// props.areasData.map(area =>{
-//     return (<Areas key={area.details.id} shortName={area.area} longName={area.details.name} description={area.details.about}/>)
-
-
 export default AreasContainer;

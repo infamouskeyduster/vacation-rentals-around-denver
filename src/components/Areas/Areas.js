@@ -16,8 +16,4 @@ const Areas = (props) => {
         </article>
     )}
 
-
 export default Areas;
-
-
-// key={area.details.id} shortName={area.area} longName={area.details.name} description={area.details.about}

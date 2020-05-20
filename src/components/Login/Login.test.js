@@ -2,7 +2,7 @@ import React from 'react';
 import Login from './Login';
 import { MemoryRouter as Router } from "react-router-dom";
 import { render, fireEvent } from '@testing-library/react';
-import '@testing-library/jest-dom/extend-expect';
+import '@testing-library/jest-dom';
 
 const mockSubmitUserInfo = jest.fn();
 

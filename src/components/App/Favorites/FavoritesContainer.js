@@ -16,7 +16,6 @@ class FavoritesContainer extends Component {
 
     Promise.all(fetchedFavoritesData)
     .then(fetchedFavoritesData => this.setState({favoritesData: fetchedFavoritesData}))
-
   }
 
   toggleFavorite = (id, isFavorite) => {
