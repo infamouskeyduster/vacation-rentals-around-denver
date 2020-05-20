@@ -36,25 +36,25 @@ class ListingsContainer extends Component {
      return foundSingleListingById;
   }
 
-  addListingToFavorite = (id, isFavorite) => {
+  toggleFavorite = (id, isFavorite) => {
+    isFavorite = !isFavorite;
     if(!isFavorite){
       this.removeListingFromFavorites(id);
       return;
     }
+
+    this.addListingToFavorite(id);
+  }
+
+  addListingToFavorite = (id) => {
     const foundListingById = this.findSingleListingById(id);
     let favorites = this.state.favorites;
     favorites[foundListingById.listing_id] = true;
     this.setState({favorites});
     this.props.setFavoriteOnParent(this.state.favorites)
-
-  }
-
-  toggleFavorite(isFavorite){
-    
   }
 
   removeListingFromFavorites = (id) => {
-    const foundListingById = this.findSingleListingById(id);
     let favorites = this.state.favorites;
     delete favorites[id];
     this.setState({favorites});
@@ -73,8 +73,7 @@ class ListingsContainer extends Component {
       return (
         <ListingDetails 
         listing={this.state.foundSingleListing[0]}
-        addListingToFavorite={this.addListingToFavorite}
-        removeListingFromFavorites={this.removeListingFromFavorites}
+        toggleFavorite={this.toggleFavorite}
         isFavorite={this.state.favorites[this.state.foundSingleListing[0].listing_id] === true}
         />
       )

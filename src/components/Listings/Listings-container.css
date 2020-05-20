@@ -45,6 +45,7 @@ button {
 
 .listing-detail-images {
   padding: 10px;
+  overflow: scroll;
 }
 
 .listing-detail-card {
@@ -73,6 +74,8 @@ button {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  height: 50%;
+  outline: 1px red;
 }
 
 .listing-detail-card hr {

@@ -1,7 +1,6 @@
 
 export const retrieveFavoritesData = async (favorites) => {
   const favoritesIds = Object.keys(favorites);
-  console.log(favoritesIds)
 
   const fetchFavorites = favoritesIds.map(async favoriteId => {
    const response = await fetch(`https://vrad-api.herokuapp.com/api/v1/listings/${favoriteId}`)

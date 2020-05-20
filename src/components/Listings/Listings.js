@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
+import React from 'react';
 import {Link} from 'react-router-dom';
-import ListingDetails from './ListingDetails';
+
 
 // import './Listings.css';
 
@@ -20,12 +20,5 @@ const Listings = (props, event) => {
     </div>
   );
 }
-
-//  "listing_id": 8,\
-// /areas/${area's id }/listings/${listing id}
-
-{/* <Link to={`/areas/${areaID}/listings`}>
-              <button>View Listings</button>
-            </Link> */}
 
 export default Listings;

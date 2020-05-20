@@ -14,7 +14,7 @@ const Nav = (props) => {
           <button onClick={props.changeLoginStatus}>Sign Out</button>
         </Link>
         <Link to="/favorites">
-          <button>View My {props.numberOfFavorites} Favorites!</button>
+          <button>View My {props.favoriteCount} Favorites!</button>
         </Link>
       </div>
     </nav>

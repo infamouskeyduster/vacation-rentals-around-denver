@@ -8,7 +8,7 @@ import FavoritesContainer from './Favorites/FavoritesContainer';
 import VRADLogo from '../../assets/vrad_logo_v1_outline.svg';
 import VRADLogoType from '../../assets/VRAD_logo_type_outline.svg';
 import {
-  BrowserRouter, Route, Switch, Redirect, Link
+  Route, Switch, Redirect
 } from "react-router-dom";
 
 
@@ -19,18 +19,20 @@ class App extends Component {
       user: {},
       areas: [],
       isLoggedIn: false,
-      favorites: {}
+      favorites: {},
+      favoriteCount: 0
     };
   }
   
   setFavoriteOnParent = (favoritesFromListingsContainer) => {
-    this.setState({favorites: {...this.state.favorites, ...favoritesFromListingsContainer}}, () => console.log(this.state.favorites))
+    this.setState({favorites: {...this.state.favorites, ...favoritesFromListingsContainer}})
+    this.setState({favoriteCount: this.state.favoriteCount + 1})
   }
 
   removeFavoriteOnParent = (id) => {
     let favorites = this.state.favorites;
     delete favorites[id]
-    console.log(this.state.favorites)
+    this.setState({favoriteCount: this.state.favoriteCount - 1})
   }
 
   setUserInfoOnParent = (user) => {
@@ -68,11 +70,6 @@ class App extends Component {
     this.setState({isLoggedIn: (!this.state.isLoggedIn)})
   }
 
-  countFavorites = () => {
-    const favoriteKeys = Object.keys(this.state.favorites)
-    return favoriteKeys.length
-  }
-
   render() {
     
     return (
@@ -88,7 +85,7 @@ class App extends Component {
             isLoggedIn={this.state.isLoggedIn}
             user={this.state.user}
             changeLoginStatus={this.changeLoginStatus}
-            numberOfFavorites={this.countFavorites}
+            favoriteCount={this.state.favoriteCount}
           />
         </div>
         <Switch>
@@ -99,15 +96,6 @@ class App extends Component {
             setUserInfoOnParent={this.setUserInfoOnParent}
           />} />
           {!this.state.isLoggedIn && <Redirect to="/" />}
-
-          {/* <Route 
-              path="/areas/:area_id/listings/:listing_id"
-              render={({match}) => {
-              return(
-              <ListingsContainer />
-              )
-              }} /> */}
-
               <Route 
                 path="/favorites"
 
@@ -122,13 +110,7 @@ class App extends Component {
           <Route
               path="/areas/:area_id/listings"
               render={({ match }) => {
-                // How can you get the :id from the url?
-                //now that we have the id, we can search our posts in state using
-                //this console logged id above
                 const foundAreaListing = this.state.areas.find(area => (area.details.id === parseInt(match.params.area_id)));
-                // const postToRender = this.state.posts.find(
-                //   post => post.id === parseInt(match.params.id)
-                // );
                 return (
                   <ListingsContainer 
                   removeFavoriteOnParent={this.removeFavoriteOnParent}
