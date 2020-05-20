@@ -11,6 +11,7 @@ class FavoritesContainer extends Component {
   }
 
   componentDidMount = async () => {
+    //retrieveFavoritesData being imported from apiCalls
     const fetchedFavoritesData = await retrieveFavoritesData(this.props.favorites)
 
     Promise.all(fetchedFavoritesData)
@@ -23,15 +24,12 @@ class FavoritesContainer extends Component {
     if(!isFavorite){
       this.props.removeFavoriteOnParent(id);
 
-
     const removeFavorite = this.state.favoritesData.filter(favorite => favorite.listing_id !== id)
 
     this.setState({favoritesData: removeFavorite})
 
       return;
     }
-
-    //this.addListingToFavorite(id);
   }
 
   render() {
@@ -47,9 +45,7 @@ class FavoritesContainer extends Component {
           key={favorite.listing_id}
           listing={favorite}
           isFavorite={true}
-          // addListingToFavorite={this.addListingToFavorite}
           toggleFavorite={this.toggleFavorite}
-          // isFavorite={this.state.favorites[this.state.foundSingleListing[0].listing_id] === true}
           />
       )
     })
@@ -59,11 +55,7 @@ class FavoritesContainer extends Component {
         {allFavorites}
       </div>
     )
-
   }
-
 }
-
-
 
 export default FavoritesContainer;

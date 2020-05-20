@@ -6,7 +6,7 @@ import '@testing-library/jest-dom/extend-expect';
 
 
 describe('Login', () => {
-  it('submits the correct info', () => {
+  it('submits the correct user info', () => {
     const mockSubmitUserInfo = jest.fn();
 
     const { getByPlaceholderText, getByText } = render(

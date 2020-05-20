@@ -7,7 +7,7 @@ class ListingsContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      listingsInfo: [] || props.favorites,
+      listingsInfo: [],
       foundSingleListing: [],
       favorites: {}
     }
@@ -31,9 +31,9 @@ class ListingsContainer extends Component {
 
  findSingleListingById = (id) => {
     const foundSingleListingById = this.state.listingsInfo.find(listing => listing.listing_id === id);
-     this.setState({foundSingleListing: [foundSingleListingById]})
+    this.setState({foundSingleListing: [foundSingleListingById]})
 
-     return foundSingleListingById;
+    return foundSingleListingById;
   }
 
   toggleFavorite = (id, isFavorite) => {
@@ -71,7 +71,7 @@ class ListingsContainer extends Component {
       return null;
     } else if (this.state.foundSingleListing.length === 1) {
       return (
-        <ListingDetails 
+        <ListingDetails
         listing={this.state.foundSingleListing[0]}
         toggleFavorite={this.toggleFavorite}
         isFavorite={this.state.favorites[this.state.foundSingleListing[0].listing_id] === true}
@@ -89,10 +89,11 @@ class ListingsContainer extends Component {
           />
         );
       })
-        return(
-            <section className="listings-container">
-              {listings}
-            </section>
+
+    return(
+        <section className="listings-container">
+          {listings}
+        </section>
         );
     }
   }

@@ -7,10 +7,8 @@ import ListingsContainer from '../Listings/Listings-container.js';
 import FavoritesContainer from './Favorites/FavoritesContainer';
 import VRADLogo from '../../assets/vrad_logo_v1_outline.svg';
 import VRADLogoType from '../../assets/VRAD_logo_type_outline.svg';
-import {
-  Route, Switch, Redirect
-} from "react-router-dom";
-
+import { Route, Switch, Redirect } from "react-router-dom";
+import { getAreaData } from './apiCalls';
 
 class App extends Component {
   constructor() {
@@ -23,7 +21,7 @@ class App extends Component {
       favoriteCount: 0
     };
   }
-  
+
   setFavoriteOnParent = (favoritesFromListingsContainer) => {
     this.setState({favorites: {...this.state.favorites, ...favoritesFromListingsContainer}})
     this.setState({favoriteCount: this.state.favoriteCount + 1})
@@ -40,44 +38,28 @@ class App extends Component {
   };
 
   fetchAreas = async () => {
-    const response = await fetch('https://vrad-api.herokuapp.com/api/v1/areas')
-    const data = await response.json()
-
-    const areaInfo = data.areas.map(async areaData => {
-          return {
-            area: areaData.area,
-            details: await this.fetchDetails(areaData.details)
-
-          }
-      })
+    //getAreaData being imported from apiCalls file
+    const areaInfo = await getAreaData();
     Promise.all(areaInfo)
     .then(areaInfo => this.setState({areas: areaInfo}))
   }
-  // fetch(`https://vrad-api.herokuapp.com${area.details}`)
-
-  fetchDetails = async (details) => {
-    const response = await fetch(`https://vrad-api.herokuapp.com${details}`)
-    const data = await response.json()
-    return await data
-  }
 
   componentDidMount() {
-     this.fetchAreas()
+    this.fetchAreas();
   }
 
   changeLoginStatus = () => {
-
     this.setState({isLoggedIn: (!this.state.isLoggedIn)})
   }
 
   render() {
-    
+
     return (
       <main className="App">
         <div className="logo-container">
-            <img 
-            className="logo" 
-            src={VRADLogo} 
+            <img
+            className="logo"
+            src={VRADLogo}
             alt="VRAD-logo"
             />
             <img className="logo-type" src={VRADLogoType} alt="VRAD-logo-type" />
@@ -94,15 +76,17 @@ class App extends Component {
           <Login
             changeLoginStatus={this.changeLoginStatus}
             setUserInfoOnParent={this.setUserInfoOnParent}
-          />} />
+          />
+          }
+          />
           {!this.state.isLoggedIn && <Redirect to="/" />}
-              <Route 
+              <Route
                 path="/favorites"
-
                 render={() => {
                   return (
-                  <FavoritesContainer  favorites={this.state.favorites} 
-                  removeFavoriteOnParent={this.removeFavoriteOnParent}
+                  <FavoritesContainer
+                    favorites={this.state.favorites}
+                    removeFavoriteOnParent={this.removeFavoriteOnParent}
                   />
                   )
                 }}
@@ -111,17 +95,22 @@ class App extends Component {
               path="/areas/:area_id/listings"
               render={({ match }) => {
                 const foundAreaListing = this.state.areas.find(area => (area.details.id === parseInt(match.params.area_id)));
+                console.log('areaListings being fed to listings container', foundAreaListing.details.listings)
                 return (
-                  <ListingsContainer 
-                  removeFavoriteOnParent={this.removeFavoriteOnParent}
-                  setFavoriteOnParent={this.setFavoriteOnParent} areaListings={foundAreaListing.details.listings}/>
+                  <ListingsContainer
+                    removeFavoriteOnParent={this.removeFavoriteOnParent}
+                    setFavoriteOnParent={this.setFavoriteOnParent}
+                    areaListings={foundAreaListing.details.listings}
+                  />
                 );
               }}/>
 
               <Route exactpath="/areas" render={() =>
-                <AreasContainer areaData={this.state.areas}
-                name={this.state.user.user}
-                />}/>
+                <AreasContainer
+                  areaData={this.state.areas}
+                  name={this.state.user.user}
+                />
+              }/>
 
         </Switch>
       </main>
