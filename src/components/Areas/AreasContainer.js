@@ -15,7 +15,6 @@ const AreasContainer = (props) => {
     )
   })
 
-
   return (
     <section className="areas-container">
       {currentArea}

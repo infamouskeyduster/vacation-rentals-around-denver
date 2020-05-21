@@ -31,3 +31,10 @@ export const getAreaData = async () => {
 
   return areaInfo;
 }
+
+export const fetchAllListingsData = async (listing) => {
+  const response = await fetch(`https://vrad-api.herokuapp.com${listing}`)
+  const data = await response.json();
+
+  return data;
+}

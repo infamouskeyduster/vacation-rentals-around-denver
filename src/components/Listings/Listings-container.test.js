@@ -4,29 +4,46 @@ import { render } from '@testing-library/react';
 import { BrowserRouter } from "react-router-dom";
 import '@testing-library/jest-dom/extend-expect';
 
+
+
 describe('ListingsContainer', () => {
 
-  it('Should show all the listings for a chosen area (at a high level)', function(){
+let listingData = [
+  {
+    listing_id: 3,
+    area_id: 590,
+    name: "Hip RiNo Party Spot",
+    address: {
+      street: "2250 Lawrence St",
+      zip: "80205"
+    },
+    details: {
+      neighborhood_id: 5124122,
+      superhost: true,
+      seller_source: "91jss1",
+      beds: 3,
+      baths: 2.5,
+      cost_per_night: 420,
+      features: [
+        "hot tub",
+        "espresso machine"
+      ]
+    },
+    dev_id: "u4gh2j",
+    area: "rino",
+    db_connect: 834470
+  }];
 
-    const listings = [
-      "/api/v1/listings/3",
-      "/api/v1/listings/44",
-      "/api/v1/listings/221",
-      "/api/v1/listings/744",
-      "/api/v1/listings/90",
-      "/api/v1/listings/310"
-    ];
-
-    const {getByText} = render(
+  const renderListingContainer = render(
       <BrowserRouter>
-      <ListingsContainer
-        // removeFavoriteOnParent={this.removeFavoriteOnParent}
-        // setFavoriteOnParent={this.setFavoriteOnParent}
-        areaListings={listings}
-      />
+        <ListingsContainer areaListings={listingData} />
       </BrowserRouter>
-    )
-    expect(listings.length).to.equal(6)
+    );
+
+  it.skip('Should show all the listings for a chosen area (at a high level)', () => {
+    const { getByText, debug } = renderListingContainer;
+    debug()
+    expect(getByText("Hip RiNo Party Spot")).toBeInTheDocument();
   });
 
 });

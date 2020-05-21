@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Listings from './Listings';
 import ListingDetails from './ListingDetails';
 import './Listings-container.css';
+import { fetchAllListingsData } from '../App/apiCalls';
 
 class ListingsContainer extends Component {
   constructor(props) {
@@ -14,19 +15,13 @@ class ListingsContainer extends Component {
   }
 
   iterateOverListingInfo =  () => {
+    console.log(this.props);
     const listingData =  this.props.areaListings.map( listing => {
-      let result =  this.fetchAllListingsData(listing);
+      let result = fetchAllListingsData(listing);
       return result;
     })
 
     return listingData;
-  }
-
-  fetchAllListingsData = async (listing) => {
-    const response = await fetch(`https://vrad-api.herokuapp.com${listing}`)
-    const data = await response.json();
-
-    return data;
   }
 
  findSingleListingById = (id) => {
